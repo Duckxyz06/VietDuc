@@ -38,6 +38,19 @@ function doGet(){return ContentService.createTextOutput(JSON.stringify({service:
 function formatWishTable_(sheet) {
  const rows=sheet.getLastRow();
  if(rows===0)return;
+ if(rows>1){
+  const photos=sheet.getRange(2,4,rows-1,2).getValues();
+  const titles=photos.map(([photoId,title])=>{
+   const path=String(photoId||'');
+   const parts=path.split('/');
+   const text=SpreadsheetApp.newRichTextValue().setText(String(title||''));
+   if(parts[0]==='photos'&&parts.length>1&&parts.every(part=>part&&part!=='.'&&part!=='..')&&!/[\\\u0000-\u001f\u007f]/.test(path)){
+    text.setLinkUrl('https://github.com/Duckxyz06/VietDuc/blob/main/public/'+parts.map(encodeURIComponent).join('/'));
+   }
+   return [text.build()];
+  });
+  sheet.getRange(2,5,rows-1,1).setRichTextValues(titles);
+ }
  sheet.getRange(1,1,rows,10)
   .setFontFamily('Times New Roman')
   .setFontSize(14)

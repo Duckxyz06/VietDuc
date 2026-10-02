@@ -2,6 +2,8 @@
 
 Bảng `LoiChuc` (10 cột, gồm tiêu đề và các dòng lời chúc) dùng **Times New Roman, cỡ 14, căn giữa theo chiều ngang và chiều dọc, kẻ tất cả ô**. Mười cột A–J có chiều rộng bằng nhau (240 px); nội dung tự xuống dòng và chiều cao hàng tự điều chỉnh theo nội dung. Mỗi lần nhận lời chúc hợp lệ, mã tự áp dụng định dạng cho bảng. Các dữ liệu và chức năng trên website không thay đổi.
 
+Ô **Tên ảnh** (cột E) có liên kết đến ảnh gốc trong `Duckxyz06/VietDuc/public/photos` trên GitHub, dựa trên Mã ảnh ở cột D. Lời chúc chung không gắn ảnh sẽ không có liên kết. Chạy `formatWishesSheet` để thêm liên kết cho các dòng cũ.
+
 ## Cập nhật Apps Script đang dùng
 
 1. Thay nội dung `Code.gs` trong dự án Apps Script của bạn bằng mã mới trong thư mục này.
