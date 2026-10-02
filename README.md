@@ -15,10 +15,26 @@ Bản snapshot đã build ở nhánh `preview`: https://raw.githack.com/Duckxyz0
 ## Đăng ảnh — không cần sửa code
 
 1. Mở thư mục **public/photos** trên GitHub.
-2. **Add file → Upload files**, thả ảnh JPG/PNG/WebP/AVIF/GIF rồi **Commit changes** vào main.
+2. **Add file → Upload files**, thả ảnh JPG/PNG/WebP/GIF/AVIF/TIFF/BMP/ICO/SVG/PSD/HEIC/HEIF rồi **Commit changes** vào main.
 3. Chờ Actions xanh và tải lại web. Mọi ảnh trong thư mục và thư mục con sẽ tự có trong album, không phụ thuộc API GitHub hay giới hạn request. Bảy ảnh đầu xuất hiện quanh lâu đài để giữ nhẹ; toàn bộ ảnh xuất hiện ở bộ sưu tập. Không có giới hạn 7 ảnh trong album.
 
-Tên ảnh trở thành tiêu đề. Ví dụ `Ngày_tốt_nghiệp.jpg` → `Ngày tốt nghiệp`. Khuyến nghị ảnh dưới 2 MB, chiều rộng khoảng 1600 px. Chỉ tải ảnh bạn muốn công khai vì repository và album là công khai. Hiện chưa có ảnh cá nhân: web hiển thị trạng thái album trống và vẫn cho viết lời chúc chung.
+Tên ảnh trở thành tiêu đề. Ví dụ `Ngày_tốt_nghiệp.jpg` → `Ngày tốt nghiệp`. Không cần tự chỉnh chiều rộng hoặc chiều cao trước khi đăng. Web tạo bản hiển thị tối đa 2400 px và thumbnail 600 px, giữ tỉ lệ và xử lý xoay EXIF; ảnh gốc vẫn được giữ trong repo. Chỉ tải ảnh bạn muốn công khai vì repository và album là công khai. Ảnh được kiểm tra và tự tạo bản WebP tương thích trình duyệt. Bộ sưu tập có ảnh ngay sau khi bước Deploy thành công.
+
+## Định dạng ảnh và kích thước
+
+- Nhận diện nội dung file, kể cả ảnh không có đuôi hoặc đuôi bị đặt sai. JPEG/JFIF, PNG/APNG, WebP, GIF, AVIF, TIFF và SVG dùng Sharp. HEIC/HEIF dùng bộ giải mã HEIF; BMP/ICO/PSD và một số định dạng ảnh máy ảnh dùng ImageMagick. Khả năng mở các biến thể RAW/HEIF phụ thuộc codec; file mã hóa, bị hỏng hoặc biến thể chưa hỗ trợ sẽ có thông báo cụ thể, không thể đảm bảo mọi định dạng ảnh từng tồn tại. GIF động được xuất WebP động khi bộ giải mã hỗ trợ; ảnh nhiều trang/layer dùng trang hoặc lớp tổng hợp đầu tiên.
+- Không đặt giới hạn chiều rộng, chiều cao hoặc dung lượng riêng trong mã nhập ảnh. Quá trình xử lý vẫn phụ thuộc RAM, thời gian và khả năng của bộ giải mã. Ảnh hiển thị tự co vừa tối đa 2400×2400, không méo; thumbnail vừa 600×600.
+- **GitHub giới hạn 25 MiB/file khi Upload files qua trình duyệt, 100 MiB/file với Git thông thường.** Mã website không thay đổi giới hạn này. Với ảnh lớn hơn, chuẩn bị bản nhẹ trước khi đăng:
+
+```bash
+npm ci
+npm run prepare-photos -- "C:\AnhGoc" "C:\AnhDeDang"
+```
+
+Sau đó tải các file `.webp` trong `AnhDeDang` lên `public/photos`. Trên Windows, nếu một định dạng cần ImageMagick, cài ImageMagick và đảm bảo lệnh `convert` của ImageMagick được dùng; cũng có thể chạy trong WSL. Ảnh gốc không bị chỉnh sửa. Bộ xử lý được kiểm thử với ảnh gốc trên 25 MiB.
+
+- Một ảnh lỗi không chặn toàn bộ lần triển khai. Xem mục **ảnh chưa mở được** dưới thanh công cụ album hoặc báo cáo tại Actions → Summary. Con trỏ Git LFS chưa chứa bytes ảnh sẽ được báo riêng.
+- Dấu đỏ/xám cạnh commit là trạng thái workflow, không đồng nghĩa ảnh chưa lên repo. Các lần cập nhật liên tiếp tự hủy lần chạy cũ; chờ lần mới nhất Deploy xanh rồi tải lại trang.
 
 ## Kết nối Google Sheets (làm một lần)
 

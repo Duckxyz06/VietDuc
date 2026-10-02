@@ -22,6 +22,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Install additional image decoders
+        run: sudo apt-get update && sudo apt-get install -y imagemagick libheif1 libraw-bin
       - run: npm ci
       - run: npm test
       - run: npm run build
