@@ -66,3 +66,10 @@ npm run preview
 ```
 
 `npm run build` tự tạo `public/photos.json` rồi build Vite, dùng đường dẫn tương đối để không lỗi assets khi chạy dưới `/VietDuc/`. Font Google có dự phòng Georgia/sans-serif. Không phụ thuộc Insta Website Builder vì dịch vụ đó tạo trang từ block/ảnh stock và không hỗ trợ đưa source tùy chỉnh cùng cơ chế GitHub/Sheets này.
+
+
+## Ngôn ngữ, nhạc và ảnh nền
+- Chọn Tiếng Việt / English ở đầu trang; lựa chọn được nhớ trên thiết bị. Thêm `questionEnglish` vào `public/config.json` nếu dùng câu hỏi tùy chỉnh.
+- Nhạc “Hồi ức xanh” được tổng hợp từ giai điệu và hợp âm tự viết trong `src/music.js`, không dùng bản thu hay sample của bên thứ ba. Được phép sử dụng/chỉnh sửa theo giấy phép ISC của dự án. Bấm nút Nhạc để phát/tắt; không tự phát.
+- 20 ảnh nhỏ lấy tự động từ album, trôi trong nền hero và xuất hiện lại ở phía đối diện. Nút tạm dừng và thiết lập giảm chuyển động của thiết bị đều được tôn trọng.
+- Chế độ 3D chỉ nghiêng nhẹ khung ảnh trong vùng album, không phủ lên tiêu đề hay nút bấm.
