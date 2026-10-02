@@ -10,8 +10,8 @@ const translations={
 '#empty-letter':'Write a wish ↗', '.collection-footer>span:first-child':'Little moments. Lasting memories.',
 '.invitation h2':'Leave a little <em>warmth.</em>', '.invitation p':'A wish, a question, or just a hello.<br>I will read and treasure every note you send.',
 '#bottom-letter':'Write to Đức <span>↗</span>', 'footer>span':'A PLACE FOR EVERYTHING WORTH REMEMBERING.', 'footer>a:last-child':'Back to the top ↑',
-'.letter-body h2':'A little note <em>for me.</em>', 'label[for=sender]':'Your name', 'label[for=message]':'Your wish',
-'label[for=question]':'Do you have a question for me?', '.privacy':'Your name and note are sent privately to Đức and are not displayed publicly.',
+'.letter-body h2':'A little note <em>for me.</em>', 'label[for=sender]':'Your name', 'label[for=message]':'Your wish', 'label[for=email]':'Email (optional)',
+'label[for=question]':'Do you have a question for me?', '.privacy':'Your name, email and note are sent privately to Đức and are not displayed publicly.',
 '.libra-constellation>span':'♎ LIBRA <small>THE SCALES</small>'
 };
 const messages={
@@ -34,7 +34,7 @@ export const photoTitle=p=>lang==='en'?p.title.replace(/^Kỷ niệm (\d+)$/,'Me
 const originals=new Map();
 export function applyLanguage(value){lang=value==='en'?'en':'vi';document.documentElement.lang=lang;try{localStorage.setItem('vietduc-language',lang)}catch{}
 for(const [selector,en]of Object.entries(translations)){const el=document.querySelector(selector);if(!el)continue;if(!originals.has(selector))originals.set(selector,el.innerHTML);el.innerHTML=lang==='en'?en:originals.get(selector);}
-const attrs=[['#sender','placeholder','Mình nên gọi bạn là…','What should I call you…'],['#message','placeholder','Viết những điều bạn muốn gửi đến mình…','Write something you would like to tell me…'],['#answer','placeholder','Câu trả lời của bạn (không bắt buộc)','Your answer (optional)'],['#question','placeholder','Một điều bạn tò mò… (không bắt buộc)','Something you are curious about… (optional)'],['#close-letter','aria-label','Đóng','Close'],['#tour','aria-label','Xoay một vòng lâu đài','Take a castle tour'],['.filters','aria-label','Kiểu hiển thị','Gallery view'],['.nav nav','aria-label','Điều hướng','Navigation'],['#scene','aria-label','Lâu đài 3D trên đảo nổi; kéo để xoay, cuộn để phóng to','3D castle on a floating island; drag to rotate, scroll to zoom'],['.libra-constellation','aria-label','Chòm sao Thiên Bình, minh họa cách điệu','Libra constellation, artistic illustration']];
+const attrs=[['#email','placeholder','Email để Đức phản hồi bạn','Your email so Đức can reply'],['#sender','placeholder','Mình nên gọi bạn là…','What should I call you…'],['#message','placeholder','Viết những điều bạn muốn gửi đến mình…','Write something you would like to tell me…'],['#answer','placeholder','Câu trả lời của bạn (không bắt buộc)','Your answer (optional)'],['#question','placeholder','Một điều bạn tò mò… (không bắt buộc)','Something you are curious about… (optional)'],['#close-letter','aria-label','Đóng','Close'],['#tour','aria-label','Xoay một vòng lâu đài','Take a castle tour'],['.filters','aria-label','Kiểu hiển thị','Gallery view'],['.nav nav','aria-label','Điều hướng','Navigation'],['#scene','aria-label','Lâu đài 3D trên đảo nổi; kéo để xoay, cuộn để phóng to','3D castle on a floating island; drag to rotate, scroll to zoom'],['.libra-constellation','aria-label','Chòm sao Thiên Bình, minh họa cách điệu','Libra constellation, artistic illustration']];
 for(const [selector,attr,vi,en]of attrs)document.querySelector(selector)?.setAttribute(attr,lang==='en'?en:vi);
 document.body.dataset.language=lang;document.querySelector('#language').value=lang;
 document.title=lang==='en'?'The Castle of Memories • Việt Đức':'Lâu đài của những hồi ức • Việt Đức';

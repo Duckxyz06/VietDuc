@@ -10,16 +10,18 @@ function doPost(e) {
   if(!origin||!/^https:\/\/[a-z0-9.-]+(:\d+)?$/i.test(origin))throw Error('Chủ trang chưa cấu hình SITE_ORIGIN.');
   if(!/^[a-f0-9-]{36}$/i.test(p.id||''))throw Error('Mã gửi không hợp lệ.');
   if(p.website)throw Error('Lời nhắn không hợp lệ.');
-  const limits={sender:80,message:2000,answer:1000,question:500,photoId:500,photoTitle:500,prompt:500};
+  const limits={sender:80,email:254,message:2000,answer:1000,question:500,photoId:500,photoTitle:500,prompt:500};
   Object.keys(limits).forEach(k=>{p[k]=String(p[k]||'').trim();if(p[k].length>limits[k])throw Error('Nội dung vượt giới hạn.');});
+  if(p.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email))throw Error('Email không hợp lệ.');
   if(!p.sender||!p.message)throw Error('Vui lòng nhập tên và lời chúc.');
   const sheetId=props.getProperty('SPREADSHEET_ID');if(!sheetId)throw Error('Chủ trang chưa cấu hình Google Sheet.');
   const lock=LockService.getScriptLock();lock.waitLock(15000);
   try {
    const book=SpreadsheetApp.openById(sheetId);const sheet=book.getSheetByName('LoiChuc')||book.insertSheet('LoiChuc');
-   if(sheet.getLastRow()===0){sheet.appendRow(['Thời gian','Mã gửi','Tên người gửi','Mã ảnh','Tên ảnh','Lời chúc','Câu hỏi của chủ trang','Câu trả lời','Câu hỏi của khách']);sheet.setFrozenRows(1);}
+   if(sheet.getLastRow()===0){sheet.appendRow(['Thời gian','Mã gửi','Tên người gửi','Mã ảnh','Tên ảnh','Lời chúc','Câu hỏi của chủ trang','Câu trả lời','Câu hỏi của khách','Email (không bắt buộc)']);sheet.setFrozenRows(1);}
+   else sheet.getRange(1,10).setValue('Email (không bắt buộc)');
    const rows=sheet.getLastRow();const duplicate=rows>1&&sheet.getRange(2,2,rows-1,1).createTextFinder(p.id).matchEntireCell(true).findNext();
-   if(!duplicate){const safe=v=>/^[=+\-@\t\r]/.test(v)?"'"+v:v;sheet.appendRow([new Date(),p.id,...['sender','photoId','photoTitle','message','prompt','answer','question'].map(k=>safe(p[k]))]);SpreadsheetApp.flush();}
+   if(!duplicate){const safe=v=>/^[=+\-@\t\r]/.test(v)?"'"+v:v;sheet.appendRow([new Date(),p.id,...['sender','photoId','photoTitle','message','prompt','answer','question','email'].map(k=>safe(p[k]))]);SpreadsheetApp.flush();}
    result.ok=true;result.message='Đã lưu lời nhắn.';
   }finally{lock.releaseLock();}
  }catch(err){console.error(err);result.message=String(err.message||'Chưa thể lưu lời nhắn.');}

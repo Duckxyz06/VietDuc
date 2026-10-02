@@ -1,8 +1,4 @@
-// Original generative score: no recordings, sampled songs or external audio.
-// Free to use and modify under the project's ISC license.
-export function createMusic(){let context,master,timer,playing=false,next=0,bar=0;
-const chords=[[48,55,60,64,67],[45,52,57,60,64],[53,60,65,69,72],[43,50,55,59,62]];
-function tone(midi,start,duration,volume){const osc=context.createOscillator(),gain=context.createGain();osc.type='sine';osc.frequency.value=440*2**((midi-69)/12);gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(volume,start+.35);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);osc.connect(gain);gain.connect(master);osc.start(start);osc.stop(start+duration+.05);osc.onended=()=>{osc.disconnect();gain.disconnect()};}
-function schedule(){if(!playing||context.state!=='running')return;while(next<context.currentTime+1.2){const chord=chords[bar%4];chord.slice(0,4).forEach(n=>tone(n,next,8,.032));[0,2,4,2,1,3].forEach((n,i)=>tone(chord[n]+12,next+i*1.25,3.2,.035));next+=7.5;bar++;}}
-return {get playing(){return playing},async toggle(){if(!context){const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)throw Error('audio-unavailable');context=new Audio();master=context.createGain();master.gain.value=.38;master.connect(context.destination);}
-if(playing){playing=false;clearInterval(timer);await context.suspend();return false;}await context.resume();playing=true;next=Math.max(next,context.currentTime+.08);schedule();timer=setInterval(schedule,500);return true;},async hide(){if(playing)await context.suspend()},async show(){if(playing){await context.resume();next=Math.max(next,context.currentTime+.08);schedule()}}};}
+// Background recording supplied by the website owner.
+// MUSIC-LICENSE.txt applies only to the previous synthesized score, not this file.
+export function createMusic(){const audio=new Audio(`${import.meta.env.BASE_URL}audio/background.m4a`);audio.loop=true;audio.volume=.35;audio.preload='none';let playing=false;
+return {get playing(){return playing},async toggle(){if(playing){audio.pause();playing=false;return false;}await audio.play();playing=true;return true;},async hide(){audio.pause()},async show(){if(playing)await audio.play()}};}

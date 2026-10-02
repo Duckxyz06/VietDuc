@@ -1,18 +1,5 @@
-ISC License — original generative background score in src/music.js
+Historical license notice
 
-Copyright (c) 2026 VietDuc project contributors
-
-Permission to use, copy, modify, and/or distribute this music and its source code
-for any purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE MUSIC AND SOURCE CODE ARE PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL
-WARRANTIES WITH REGARD TO THEM INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
-SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
-RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
-NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE
-USE OR PERFORMANCE OF THIS MUSIC OR SOURCE CODE.
-
-This score is synthesized from original note sequences. It contains no external
-recordings, samples, lyrics, or copied compositions.
+The original synthesized score from earlier versions was licensed under ISC.
+It has now been replaced by the recording supplied by the website owner.
+That ISC grant does not apply to public/audio/background.m4a.
