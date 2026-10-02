@@ -23,3 +23,6 @@
 @media(prefers-reduced-motion:reduce){.drifting-memory{animation:none;left:var(--static-left);transform:rotate(var(--angle))}}
 
 body[data-language=en] .photo-frame::after{content:'Write a wish ↗'}
+
+/* Only distant blurred background photos are removed; castle frames stay. */
+.memory-drift,.drifting-memory{display:none!important}
