@@ -29,7 +29,9 @@ for(const file of (await walk(root)).sort((a,b)=>a.localeCompare(b,'vi',{numeric
     try{input=Buffer.from(await heicConvert({buffer:bytes,format:'PNG'}));meta=await sharp(input,options).metadata();}catch{input=null;}
    }else input=null;
    if(!input){
-    if(!imageExtension.test(file)){ignored.push(id);continue;}
+    const signature=bytes.subarray(0,12);
+    const rasterMagic=signature.subarray(0,2).toString()==='BM'||signature.subarray(0,4).toString()==='8BPS'||signature.equals(Buffer.from([0,0,1,0]))||bytes.subarray(0,4).equals(Buffer.from([0,0,1,0]))||bytes.subarray(0,4).equals(Buffer.from([0,0,2,0]))||/^(II|MM|P[1-7])/.test(signature.toString('ascii'))||brand.includes('ftyp');
+    if(!imageExtension.test(file)&&!rasterMagic){ignored.push(id);continue;}
     // ImageMagick expands support to BMP/ICO/PSD, HEIF and camera RAW decoders.
     // Absolute paths prevent filenames from being treated as URL/coder inputs.
     const args=['-limit','memory','128MiB','-limit','map','256MiB',path.resolve(file)+'[0]','-auto-orient','-resize','2400x2400>','png:-'];
