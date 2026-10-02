@@ -43,7 +43,11 @@ function formatWishTable_(sheet) {
   .setFontSize(14)
   .setHorizontalAlignment('center')
   .setVerticalAlignment('middle')
+  .setWrap(true)
   .setBorder(true,true,true,true,true,true);
+ sheet.setColumnWidths(1,10,240);
+ SpreadsheetApp.flush();
+ sheet.autoResizeRows(1,rows);
 }
 
 // Run once from Apps Script to apply the same formatting to existing wishes.

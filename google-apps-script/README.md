@@ -1,6 +1,6 @@
 # Định dạng bảng lời chúc
 
-Bảng `LoiChuc` (10 cột, gồm tiêu đề và các dòng lời chúc) dùng **Times New Roman, cỡ 14, căn giữa theo chiều ngang và chiều dọc, kẻ tất cả ô**. Mỗi lần nhận lời chúc hợp lệ, mã tự áp dụng định dạng cho bảng. Các dữ liệu và chức năng trên website không thay đổi.
+Bảng `LoiChuc` (10 cột, gồm tiêu đề và các dòng lời chúc) dùng **Times New Roman, cỡ 14, căn giữa theo chiều ngang và chiều dọc, kẻ tất cả ô**. Mười cột A–J có chiều rộng bằng nhau (240 px); nội dung tự xuống dòng và chiều cao hàng tự điều chỉnh theo nội dung. Mỗi lần nhận lời chúc hợp lệ, mã tự áp dụng định dạng cho bảng. Các dữ liệu và chức năng trên website không thay đổi.
 
 ## Cập nhật Apps Script đang dùng
 
