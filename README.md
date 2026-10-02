@@ -1,6 +1,10 @@
 # Lâu đài kỷ niệm — Nguyễn Việt Đức
 
-Web 3D thật bằng Three.js: đảo nổi, lâu đài, ánh sáng, cửa sổ, cây, cờ và khung ảnh. Kéo để xoay, cuộn để zoom, nút xoay để tham quan. Nhịp xuất hiện dùng spring của Remotion; hỗ trợ giảm chuyển động, điện thoại và dự phòng khi thiết bị không có WebGL. Phong cách chuyển cảnh, vật thể ở trung tâm và ánh sáng lấy cảm hứng từ hai video Pinterest đã cung cấp; không sao chép nội dung video.
+Web 3D thật bằng Three.js: đảo nổi, lâu đài, ánh sáng, cửa sổ, cây, cờ và khung ảnh. Kéo để xoay, cuộn để zoom, nút xoay để tham quan. Nhịp xuất hiện dùng spring của Remotion; hỗ trợ giảm chuyển động, điện thoại và SVG dự phòng khi thiết bị không có WebGL (vẫn xoay được lâu đài; ảnh hiển thị đầy đủ ở album, không làm texture quanh lâu đài trong chế độ SVG). Phong cách chuyển cảnh, vật thể ở trung tâm và ánh sáng lấy cảm hứng từ hai video Pinterest đã cung cấp; không sao chép nội dung video.
+
+## Xem thử
+
+Bản snapshot đã build ở nhánh `preview`: https://raw.githack.com/Duckxyz06/VietDuc/preview/index.html . Đây là bản xem thử qua CDN bên thứ ba, có thể có màn hình xác nhận trước khi mở. Ảnh mới trên main sẽ tự xuất hiện ở bản GitHub Pages sau khi bật Pages; nhánh preview là snapshot, không tự cập nhật khi bạn thêm ảnh.
 
 ## Đưa web lên mạng
 
